@@ -1,11 +1,11 @@
 #include <sourcemod>
 #include <sdktools>
-#include <scp>
+#include <chat-processor>
 
 #define PLUGIN_NAME 		"[ANY] Math Quizz"
 #define PLUGIN_DESCRIPTION 	"Show Player on correct math answer. - no Store"
 #define PLUGIN_AUTHOR 		"Arkarr"
-#define PLUGIN_VERSION 		"1.00 - standalone by shanapu"
+#define PLUGIN_VERSION 		"1.01 c-p - standalone by shanapu"
 #define PLUGIN_TAG			"[QuizZ]"
 #define PLUS				"+"
 #define MINUS				"-"
@@ -96,7 +96,7 @@ public Action StartQuestion(int client, int args)
 	timerQuestionEnd = CreateTimer(GetConVarFloat(CVAR_TimeAnswer), EndQuestion);
 }
 
-public Action OnChatMessage(&author, Handle recipients, char[] name, char[] message)
+public Action CP_OnChatMessage(int& author, ArrayList recipients, char[] flagstring, char[] name, char[] message, bool & processcolors, bool & removecolors)
 {
 	if(inQuizz)
 	{
